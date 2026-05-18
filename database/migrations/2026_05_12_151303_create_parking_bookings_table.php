@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('guest_name');
             $table->string('room_number', 32);
             $table->string('plate_number', 32)->nullable();
-            $table->timestamp('reserved_from');
-            $table->timestamp('reserved_until');
+            $table->dateTime('reserved_from');
+            $table->dateTime('reserved_until');
             $table->string('status', 32)->default('pending');
             $table->text('notes')->nullable();
             $table->timestamps();
