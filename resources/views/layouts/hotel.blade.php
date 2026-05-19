@@ -20,7 +20,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body class="h-full bg-[#f5f5f9] font-sans text-slate-700 antialiased dark:bg-[#1a0a0c] dark:text-slate-200" style="font-family:'Public Sans',ui-sans-serif,system-ui,sans-serif">
+    <body class="h-full bg-brand-cream font-sans text-navy antialiased" style="font-family:'Public Sans',ui-sans-serif,system-ui,sans-serif">
         @php
             $user = auth()->user();
             $roleLabel = $user?->roleLabel() ?? '';
@@ -39,8 +39,8 @@
                     @php($t = session('hotel_toast'))
                     <div @class([
                         'rounded-lg border px-4 py-3 text-sm shadow-lg',
-                        'border-emerald-200 bg-white text-emerald-800' => ($t['type'] ?? 'success') === 'success',
-                        'border-rose-200 bg-white text-rose-800' => ($t['type'] ?? '') === 'error',
+                        'border-brand-border bg-white text-navy' => ($t['type'] ?? 'success') === 'success',
+                        'border-brand-danger/30 bg-white text-brand-danger' => ($t['type'] ?? '') === 'error',
                     ])>
                         {{ $t['message'] ?? '' }}
                     </div>
@@ -75,7 +75,7 @@
                 </div>
 
                 <nav class="vuexy-scrollbar flex-1 space-y-1 overflow-y-auto px-3 py-4">
-                    <p class="mb-2 px-3 text-[11px] font-semibold uppercase tracking-widest text-slate-500">{{ __('Menu') }}</p>
+                    <p class="mb-2 px-3 text-[11px] font-semibold uppercase tracking-widest text-brand-muted">{{ __('Menu') }}</p>
                     <x-hotel.nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" icon="home">{{ __('Dashboard') }}</x-hotel.nav-link>
                     <x-hotel.nav-link href="{{ route('parking.map') }}" :active="request()->routeIs('parking.map')" icon="map">{{ __('Denah Parkir') }}</x-hotel.nav-link>
                     @if ($user?->isAdministrator())
@@ -83,18 +83,18 @@
                         <x-hotel.nav-link href="{{ route('parking.activity') }}" :active="request()->routeIs('parking.activity')" icon="shield">{{ __('Activity Log') }}</x-hotel.nav-link>
                         <x-hotel.nav-link href="{{ route('settings') }}" :active="request()->routeIs('settings')" icon="settings">{{ __('Pengaturan') }}</x-hotel.nav-link>
                     @endif
-                    <p class="mb-2 mt-6 px-3 text-[11px] font-semibold uppercase tracking-widest text-slate-500">{{ __('Akun') }}</p>
+                    <p class="mb-2 mt-6 px-3 text-[11px] font-semibold uppercase tracking-widest text-brand-muted">{{ __('Akun') }}</p>
                     <x-hotel.nav-link href="{{ route('profile') }}" :active="request()->routeIs('profile')" icon="user">{{ __('Profil') }}</x-hotel.nav-link>
                 </nav>
 
                 <div class="border-t border-white/10 p-4">
                     <div class="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2.5">
-                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-500/20 text-xs font-bold text-red-200 ring-1 ring-red-400/30">
+                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-orange/20 text-xs font-bold text-brand-orange ring-1 ring-brand-orange/40">
                             {{ $initials }}
                         </div>
                         <div class="min-w-0">
                             <p class="truncate text-sm font-medium text-white">{{ $user->name }}</p>
-                            <p class="truncate text-xs text-slate-400">{{ $roleLabel }}</p>
+                            <p class="truncate text-xs text-brand-muted">{{ $roleLabel }}</p>
                         </div>
                     </div>
                 </div>
@@ -102,11 +102,11 @@
 
             {{-- Main --}}
             <div class="lg:ps-[260px]">
-                <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-md dark:border-slate-700/50 dark:bg-[#2a1214]/95">
+                <header class="sticky top-0 z-30 border-b border-brand-border bg-white shadow-sm backdrop-blur-md">
                     <div class="flex h-[4.25rem] items-center gap-3 px-4 sm:px-6">
                         <button
                             type="button"
-                            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 lg:hidden dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand-border text-brand-muted hover:bg-brand-cream lg:hidden"
                             @click="sidebarOpen = true"
                         >
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -130,7 +130,7 @@
                             <a
                                 href="{{ route('parking.map') }}"
                                 wire:navigate
-                                class="hidden h-10 items-center gap-1.5 rounded-lg bg-red-600 px-3.5 text-sm font-medium text-white shadow-sm shadow-red-600/30 transition hover:bg-red-700 sm:inline-flex"
+                                class="btn-accent hidden h-10 gap-1.5 px-3.5 sm:inline-flex"
                             >
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
                                 {{ __('Check-in') }}
@@ -140,28 +140,28 @@
                                 <button
                                     type="button"
                                     @click="userMenu = !userMenu"
-                                    class="flex items-center gap-2 rounded-lg py-1.5 pe-2 ps-1.5 transition hover:bg-slate-100 dark:hover:bg-slate-800"
+                                    class="flex items-center gap-2 rounded-lg py-1.5 pe-2 ps-1.5 transition hover:bg-brand-cream"
                                 >
-                                    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">{{ $initials }}</span>
+                                    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-xs font-bold text-white">{{ $initials }}</span>
                                     <span class="hidden text-start sm:block">
-                                        <span class="block text-sm font-medium text-slate-800 dark:text-white">{{ $user->name }}</span>
-                                        <span class="block text-xs text-slate-500">{{ $roleLabel }}</span>
+                                        <span class="block text-sm font-medium text-navy">{{ $user->name }}</span>
+                                        <span class="block text-xs text-brand-muted">{{ $roleLabel }}</span>
                                     </span>
-                                    <svg class="hidden h-4 w-4 text-slate-400 sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
+                                    <svg class="hidden h-4 w-4 text-brand-muted sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
                                 </button>
                                 <div
                                     x-show="userMenu"
                                     x-transition
                                     x-cloak
-                                    class="absolute end-0 mt-2 w-52 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-[#2a1214]"
+                                    class="absolute end-0 mt-2 w-52 overflow-hidden rounded-lg border border-brand-border bg-white py-1 shadow-lg"
                                 >
-                                    <a href="{{ route('profile') }}" wire:navigate class="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800">
+                                    <a href="{{ route('profile') }}" wire:navigate class="flex items-center gap-2 px-4 py-2.5 text-sm text-navy hover:bg-brand-cream">
                                         <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
                                         {{ __('Profil') }}
                                     </a>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/30">
+                                        <button type="submit" class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-brand-danger hover:bg-brand-danger/5">
                                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
                                             {{ __('Keluar') }}
                                         </button>
@@ -170,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-t border-slate-100 px-4 py-2.5 md:hidden dark:border-slate-700">
+                    <div class="border-t border-brand-border px-4 py-2.5 md:hidden">
                         <livewire:layout.global-search />
                     </div>
                 </header>
@@ -179,7 +179,7 @@
                     {{ $slot }}
                 </main>
 
-                <footer class="px-6 pb-6 pt-2 text-center text-xs text-slate-400">
+                <footer class="px-6 pb-6 pt-2 text-center text-xs text-brand-muted">
                     © {{ date('Y') }} {{ config('app.name') }} · {{ __('Manajemen Parkir Hotel') }}
                 </footer>
             </div>

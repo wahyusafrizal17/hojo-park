@@ -22,7 +22,7 @@
 
     {{-- Area Parkir Motor --}}
     <div
-        class="pointer-events-none z-[1] flex h-full min-h-0 items-center justify-center rounded-xl border-2 border-dashed border-red-300/80 bg-red-50/70 p-2 text-center text-[10px] font-bold uppercase leading-tight tracking-wide text-red-700/90 dark:border-red-800/60 dark:bg-red-950/40 dark:text-red-200/90"
+        class="pointer-events-none z-[1] flex h-full min-h-0 items-center justify-center rounded-xl border-2 border-dashed border-red-300/80 bg-red-50/70 p-2 text-center text-[10px] font-bold uppercase leading-tight tracking-wide text-brand-orange/90 dark:border-red-800/60 dark:bg-red-950/40 dark:text-red-200/90"
         style="grid-column:{{ $motor['coordinate_x'] }}/span {{ $motor['span_columns'] }};grid-row:{{ $motor['coordinate_y'] }}/span {{ $motor['span_rows'] }}"
         aria-hidden="true"
     >
@@ -40,7 +40,7 @@
 
     {{-- Pintu Masuk (lorong di atas B.26–B.30) --}}
     <div
-        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-red-400/70 bg-red-600/90 px-2 py-1.5 text-center text-[9px] font-bold uppercase tracking-wide text-white shadow-sm"
+        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-red-400/70 bg-navy/90 px-2 py-1.5 text-center text-[9px] font-bold uppercase tracking-wide text-white shadow-sm"
         style="grid-column:{{ $entrance['coordinate_x'] }}/span {{ $entrance['span_columns'] }};grid-row:{{ $entrance['coordinate_y'] }}/span {{ $entrance['span_rows'] }}"
         aria-hidden="true"
     >

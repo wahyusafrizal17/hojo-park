@@ -14,7 +14,7 @@
 >
     {{-- Pintu Masuk (barat) --}}
     <div
-        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-red-300/60 bg-red-50/90 p-1 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-red-800 dark:border-red-800 dark:bg-red-950/40 dark:text-red-200"
+        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-brand-orange/50 bg-brand-orange-pale p-1 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-navy dark:border-red-800 dark:bg-red-950/40 dark:text-red-200"
         style="grid-column:{{ $entrance['coordinate_x'] }}/span {{ $entrance['span_columns'] }};grid-row:{{ $entrance['coordinate_y'] }}/span {{ $entrance['span_rows'] }}"
         aria-hidden="true"
     >
@@ -30,13 +30,13 @@
         <span style="writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)">{{ __('Pintu Keluar') }}</span>
     </div>
 
-    {{-- Pintu Keluar (timur laut) --}}
+    {{-- Pintu Keluar (timur laut) — horizontal --}}
     <div
-        class="pointer-events-none z-[1] flex items-center justify-center rounded-full bg-slate-600 px-1.5 py-1 text-center text-[8px] font-bold uppercase leading-tight text-white shadow-sm dark:bg-slate-500"
-        style="grid-column:{{ $exitNe['coordinate_x'] }};grid-row:{{ $exitNe['coordinate_y'] }}"
+        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-slate-300/60 bg-slate-100/90 px-2 py-1 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-slate-700 dark:border-slate-600 dark:bg-slate-800/60 dark:text-slate-300"
+        style="grid-column:{{ $exitNe['coordinate_x'] }}/span {{ $exitNe['span_columns'] }};grid-row:{{ $exitNe['coordinate_y'] }}/span {{ $exitNe['span_rows'] }}"
         aria-hidden="true"
     >
-        {{ __('Keluar') }}
+        {{ __('Pintu Keluar') }}
     </div>
 
     {{-- Jalan Pantura (selatan) --}}

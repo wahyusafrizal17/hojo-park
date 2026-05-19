@@ -15,8 +15,8 @@
                 wire:click="setArea('{{ $area->value }}')"
                 @class([
                     'rounded-xl px-4 py-2 text-sm font-semibold transition',
-                    'bg-red-600 text-white shadow-sm' => $activeArea === $area->value,
-                    'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300' => $activeArea !== $area->value,
+                    'bg-brand-orange text-white shadow-sm' => $activeArea === $area->value,
+                    'border border-brand-border bg-white text-navy hover:bg-brand-cream' => $activeArea !== $area->value,
                 ])
             >
                 {{ $area->label() }}
@@ -25,11 +25,11 @@
     </div>
 
     <div class="vuexy-card flex flex-wrap gap-2 p-4 text-xs">
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 font-medium text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-200">
-                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>{{ __('Kosong') }}
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-brand-orange/30 bg-brand-orange-pale px-3 py-1 font-medium text-navy">
+                <span class="h-2 w-2 rounded-full bg-brand-orange"></span>{{ __('Kosong') }}
             </span>
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-3 py-1 font-medium text-rose-800 dark:border-rose-900 dark:bg-rose-950/60 dark:text-rose-200">
-                <span class="h-2 w-2 rounded-full bg-rose-500"></span>{{ __('Terisi') }}
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-navy/20 bg-navy/10 px-3 py-1 font-medium text-navy">
+                <span class="h-2 w-2 rounded-full bg-navy"></span>{{ __('Terisi') }}
             </span>
             <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 font-medium text-amber-900 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-100">
                 <span class="h-2 w-2 rounded-full bg-amber-400"></span>{{ __('Booking') }}
@@ -42,7 +42,7 @@
     <div class="flex flex-col gap-4 xl:flex-row">
         <div class="vuexy-card relative min-w-0 flex-1 overflow-hidden p-4">
             <div class="mb-3 flex items-center justify-between gap-2">
-                <p class="text-xs font-semibold uppercase tracking-wider text-red-700 dark:text-red-300">{{ __('Area Parkir :zone', ['zone' => $activeAreaEnum->label()]) }}</p>
+                <p class="text-xs font-semibold uppercase tracking-wider text-brand-orange dark:text-red-300">{{ __('Area Parkir :zone', ['zone' => $activeAreaEnum->label()]) }}</p>
                 <p class="text-[10px] text-slate-400 dark:text-slate-500">{{ __('Auto-refresh 5 detik') }}</p>
             </div>
 
@@ -73,9 +73,9 @@
             >
                 <div class="flex items-start justify-between gap-3">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-wide text-red-600 dark:text-red-400">{{ __('Slot') }}</p>
-                        <h2 class="text-xl font-bold text-slate-900 dark:text-white">{{ $slot?->displayCode() }}</h2>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">{{ __('Status:') }} {{ $slot?->status?->label() }}</p>
+                        <p class="text-xs font-semibold uppercase tracking-wide text-brand-orange">{{ __('Slot') }}</p>
+                        <h2 class="text-xl font-bold text-navy">{{ $slot?->displayCode() }}</h2>
+                        <p class="text-sm text-brand-muted">{{ __('Status:') }} {{ $slot?->status?->label() }}</p>
                     </div>
                     <button type="button" wire:click="closeModal" class="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200">
                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
@@ -110,10 +110,6 @@
                                     <dd class="font-mono font-semibold">{{ $t->plate_number }}</dd>
                                 </div>
                                 <div>
-                                    <dt class="text-xs text-slate-500 dark:text-slate-400">{{ __('Jenis') }}</dt>
-                                    <dd>{{ $t->vehicleType?->name }}</dd>
-                                </div>
-                                <div>
                                     <dt class="text-xs text-slate-500 dark:text-slate-400">{{ __('Masuk') }}</dt>
                                     <dd>{{ $t->checked_in_at?->timezone(config('app.timezone'))->format('d M Y H:i') }}</dd>
                                 </div>
@@ -141,29 +137,20 @@
                     @can('checkIn', $slot)
                         <form wire:submit.prevent="checkInSubmit" class="mt-5 space-y-3 text-sm">
                             <div>
-                                <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Jenis kendaraan') }}</label>
-                                <select wire:model="checkIn.vehicle_type_id" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900">
-                                    @foreach ($vehicleTypes as $vt)
-                                        <option value="{{ $vt->id }}">{{ $vt->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('checkIn.vehicle_type_id') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
-                            </div>
-                            <div>
                                 <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Nama tamu') }}</label>
                                 <input type="text" wire:model="checkIn.guest_name" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
-                                @error('checkIn.guest_name') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                @error('checkIn.guest_name') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('No. kamar') }}</label>
                                     <input type="text" wire:model="checkIn.room_number" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
-                                    @error('checkIn.room_number') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                    @error('checkIn.room_number') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
                                 <div>
                                     <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Plat') }}</label>
                                     <input type="text" wire:model="checkIn.plate_number" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm uppercase dark:border-slate-700 dark:bg-slate-900" />
-                                    @error('checkIn.plate_number') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                    @error('checkIn.plate_number') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
                             </div>
                             <div>
@@ -171,10 +158,10 @@
                                 <textarea wire:model="checkIn.notes" rows="2" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900"></textarea>
                             </div>
                             <label class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
-                                <input type="checkbox" wire:model="checkIn.scan_entry" class="rounded border-slate-300 text-red-600" />
+                                <input type="checkbox" wire:model="checkIn.scan_entry" class="rounded border-slate-300 text-brand-orange" />
                                 {{ __('Entri via scan / QR') }}
                             </label>
-                            <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-red-600 to-red-700 py-2.5 text-sm font-semibold text-white shadow-md shadow-red-600/25">{{ __('Simpan check-in') }}</button>
+                            <button type="submit" class="btn-primary w-full">{{ __('Simpan check-in') }}</button>
                         </form>
                     @endcan
                 @endif
@@ -183,7 +170,7 @@
                     @can('checkOut', $slot)
                         <div class="mt-5 space-y-3 text-sm">
                             <p class="text-slate-600 dark:text-slate-300">{{ __('Check-out akan mengosongkan slot dan menyimpan riwayat.') }}</p>
-                            <button type="button" wire:click="checkOutSubmit" class="w-full rounded-xl bg-gradient-to-r from-rose-600 to-orange-600 py-2.5 text-sm font-semibold text-white shadow-md">{{ __('Konfirmasi check-out') }}</button>
+                            <button type="button" wire:click="checkOutSubmit" class="btn-danger">{{ __('Konfirmasi check-out') }}</button>
                         </div>
                     @endcan
                 @endif
@@ -192,48 +179,39 @@
                     @can('book', $slot)
                         <form wire:submit.prevent="bookingSubmit" class="mt-5 space-y-3 text-sm">
                             <div>
-                                <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Jenis kendaraan') }}</label>
-                                <select wire:model="booking.vehicle_type_id" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900">
-                                    @foreach ($vehicleTypes as $vt)
-                                        <option value="{{ $vt->id }}">{{ $vt->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('booking.vehicle_type_id') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
-                            </div>
-                            <div>
                                 <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Nama tamu') }}</label>
                                 <input type="text" wire:model="booking.guest_name" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
-                                @error('booking.guest_name') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                @error('booking.guest_name') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('No. kamar') }}</label>
                                     <input type="text" wire:model="booking.room_number" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
-                                    @error('booking.room_number') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                    @error('booking.room_number') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
                                 <div>
                                     <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Plat (opsional)') }}</label>
                                     <input type="text" wire:model="booking.plate_number" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
-                                    @error('booking.plate_number') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                    @error('booking.plate_number') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Dari') }}</label>
                                     <input type="datetime-local" wire:model="booking.reserved_from" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
-                                    @error('booking.reserved_from') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                    @error('booking.reserved_from') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
                                 <div>
                                     <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Sampai') }}</label>
                                     <input type="datetime-local" wire:model="booking.reserved_until" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
-                                    @error('booking.reserved_until') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                                    @error('booking.reserved_until') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
                             </div>
                             <div>
                                 <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Catatan') }}</label>
                                 <textarea wire:model="booking.notes" rows="2" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900"></textarea>
                             </div>
-                            <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 py-2.5 text-sm font-semibold text-white shadow-md">{{ __('Simpan booking') }}</button>
+                            <button type="submit" class="btn-primary w-full">{{ __('Simpan booking') }}</button>
                         </form>
                     @endcan
                 @endif
@@ -247,7 +225,7 @@
                                     <option value="{{ $st->value }}">{{ $st->label() }}</option>
                                 @endforeach
                             </select>
-                            @error('statusChoice') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                            @error('statusChoice') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                             <button type="submit" class="w-full rounded-xl border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800">{{ __('Perbarui status') }}</button>
                         </form>
                     @endcan

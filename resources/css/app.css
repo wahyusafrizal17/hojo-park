@@ -8,49 +8,73 @@
 
 @layer base {
     body {
-        @apply text-[15px];
+        @apply text-[15px] text-navy;
     }
 }
 
 @layer components {
-  .vuexy-card {
-    @apply rounded-xl border border-slate-200/80 bg-white shadow-[0_2px_6px_rgba(69,10,10,0.06)] dark:border-red-950/40 dark:bg-[#2a1214]/60 dark:shadow-none;
-  }
+    .vuexy-card {
+        @apply rounded-xl border border-brand-border bg-white shadow-vuexy;
+    }
 
-  .vuexy-badge {
-    @apply inline-flex items-center rounded-md bg-red-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-600 dark:text-red-300;
-  }
+    .vuexy-badge {
+        @apply inline-flex items-center rounded-md bg-brand-orange-pale px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-orange;
+    }
 
-  .vuexy-nav-link {
-    @apply mb-0.5 flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium text-slate-400 transition duration-150 hover:bg-white/5 hover:text-white;
-  }
+    .vuexy-nav-link {
+        @apply mb-0.5 flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium text-brand-muted transition duration-150 hover:bg-white/10 hover:text-white;
+    }
 
-  .vuexy-nav-link-active {
-    @apply bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg shadow-red-950/40;
-  }
+    .vuexy-nav-link-active {
+        @apply bg-brand-orange text-white shadow-lg shadow-navy/30;
+    }
 
-  .vuexy-nav-icon {
-    @apply flex h-6 w-6 shrink-0 items-center justify-center opacity-90;
-  }
+    .vuexy-nav-icon {
+        @apply flex h-6 w-6 shrink-0 items-center justify-center opacity-90;
+    }
 
-  .vuexy-nav-link-active .vuexy-nav-icon {
-    @apply opacity-100;
-  }
+    .vuexy-nav-link-active .vuexy-nav-icon {
+        @apply opacity-100;
+    }
 
-  .vuexy-sidebar {
-    @apply bg-gradient-to-b from-[#3d1218] to-[#2a0e12] text-slate-300;
-  }
+    .vuexy-sidebar {
+        @apply bg-navy text-white;
+    }
 
-  .vuexy-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
-  }
+    .vuexy-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    }
 
-  .vuexy-scrollbar::-webkit-scrollbar {
-    width: 5px;
-  }
+    .vuexy-scrollbar::-webkit-scrollbar {
+        width: 5px;
+    }
 
-  .vuexy-scrollbar::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-white/15;
-  }
+    .vuexy-scrollbar::-webkit-scrollbar-thumb {
+        @apply rounded-full bg-white/15;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-xl bg-navy px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-dark focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:ring-offset-2;
+    }
+
+    .btn-accent {
+        @apply inline-flex items-center justify-center rounded-xl bg-brand-orange px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-brand-orange/25 transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:ring-offset-2;
+    }
+
+    .btn-danger {
+        @apply inline-flex w-full items-center justify-center rounded-xl bg-brand-danger py-2.5 text-sm font-semibold text-white shadow-md transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-brand-danger/40 focus:ring-offset-2;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center rounded-xl border border-brand-border bg-brand-cream px-4 py-2 text-sm font-medium text-navy transition hover:bg-white;
+    }
+
+    .field-input {
+        @apply w-full rounded-xl border border-brand-border bg-brand-cream text-sm text-navy placeholder:text-brand-muted focus:border-brand-orange focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/20;
+    }
+
+    .table-head {
+        @apply border-b border-brand-border bg-brand-cream text-left text-xs font-semibold uppercase tracking-wide text-navy;
+    }
 }

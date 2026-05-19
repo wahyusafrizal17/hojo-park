@@ -22,7 +22,7 @@
                             <td class="whitespace-nowrap px-6 py-3.5 text-slate-600 dark:text-slate-300">{{ $log->created_at->timezone(config('app.timezone'))->format('d M Y H:i:s') }}</td>
                             <td class="px-6 py-3.5 font-medium text-slate-800 dark:text-white">{{ $log->user?->name ?? '—' }}</td>
                             <td class="px-6 py-3.5">
-                                <span class="rounded-md bg-red-500/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-red-700 dark:text-red-300">{{ $log->action }}</span>
+                                <span class="rounded-md bg-red-500/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-brand-orange dark:text-red-300">{{ $log->action }}</span>
                             </td>
                             <td class="px-6 py-3.5 text-slate-600 dark:text-slate-300">{{ $log->description }}</td>
                             <td class="px-6 py-3.5 font-mono text-xs text-slate-500">{{ $log->ip_address }}</td>

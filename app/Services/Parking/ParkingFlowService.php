@@ -9,6 +9,7 @@ use App\Models\ParkingBooking;
 use App\Models\ParkingSlot;
 use App\Models\ParkingTransaction;
 use App\Models\User;
+use App\Models\VehicleType;
 use App\Repositories\Contracts\ParkingSlotRepositoryInterface;
 use App\Repositories\Contracts\ParkingTransactionRepositoryInterface;
 use App\Services\Activity\ActivityLogger;
@@ -38,7 +39,7 @@ class ParkingFlowService
 
             $transaction = ParkingTransaction::query()->create([
                 'parking_slot_id' => $slot->id,
-                'vehicle_type_id' => $data['vehicle_type_id'],
+                'vehicle_type_id' => $this->resolveVehicleTypeId($slot),
                 'guest_name' => $data['guest_name'],
                 'room_number' => $data['room_number'],
                 'plate_number' => strtoupper($data['plate_number']),
@@ -129,7 +130,7 @@ class ParkingFlowService
         return DB::transaction(function () use ($slot, $data, $actor) {
             $booking = ParkingBooking::query()->create([
                 'parking_slot_id' => $slot->id,
-                'vehicle_type_id' => $data['vehicle_type_id'],
+                'vehicle_type_id' => $this->resolveVehicleTypeId($slot),
                 'guest_name' => $data['guest_name'],
                 'room_number' => $data['room_number'],
                 'plate_number' => isset($data['plate_number']) ? strtoupper($data['plate_number']) : null,
@@ -152,5 +153,16 @@ class ParkingFlowService
 
             return $booking;
         });
+    }
+
+    private function resolveVehicleTypeId(ParkingSlot $slot): int
+    {
+        $vehicleTypeId = $slot->vehicle_type_id ?? VehicleType::query()->value('id');
+
+        if (! $vehicleTypeId) {
+            throw new InvalidArgumentException(__('Jenis kendaraan slot belum dikonfigurasi.'));
+        }
+
+        return (int) $vehicleTypeId;
     }
 }

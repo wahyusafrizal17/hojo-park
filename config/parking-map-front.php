@@ -25,8 +25,10 @@ return [
     ],
 
     'exit_northeast' => [
-        'coordinate_x' => 6,
+        'coordinate_x' => 5,
         'coordinate_y' => 1,
+        'span_columns' => 2,
+        'span_rows' => 1,
     ],
 
     'road_pantura' => [

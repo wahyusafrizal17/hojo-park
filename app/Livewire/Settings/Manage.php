@@ -8,7 +8,6 @@ use App\Models\SystemSetting;
 use App\Services\Auth\DualPasswordAuthService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rules\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -46,19 +45,36 @@ class Manage extends Component
     {
         Gate::authorize('manageSettings', ParkingSlot::class);
 
+        if (blank($this->security_password) && blank($this->administrator_password)) {
+            $this->addError('security_password', __('Isi minimal satu kata sandi yang ingin diubah.'));
+
+            return;
+        }
+
+        $passwordRules = ['nullable', 'string', 'min:4', 'max:20', 'confirmed'];
+
         $this->validate([
-            'security_password' => ['required', 'confirmed', Password::min(6)],
-            'administrator_password' => ['required', 'confirmed', Password::min(6)],
+            'security_password' => $passwordRules,
+            'administrator_password' => $passwordRules,
         ]);
 
-        $auth->updateSecurityPassword($this->security_password);
-        $auth->updateAdministratorPassword($this->administrator_password);
+        $updated = [];
+
+        if (filled($this->security_password)) {
+            $auth->updateSecurityPassword($this->security_password);
+            $updated[] = 'Security';
+        }
+
+        if (filled($this->administrator_password)) {
+            $auth->updateAdministratorPassword($this->administrator_password);
+            $updated[] = 'Administrator';
+        }
 
         $this->reset(['security_password', 'security_password_confirmation', 'administrator_password', 'administrator_password_confirmation']);
 
         session()->flash('hotel_toast', [
             'type' => 'success',
-            'message' => __('Kata sandi akses Security dan Administrator berhasil diperbarui.'),
+            'message' => __('Kata sandi :roles berhasil diperbarui.', ['roles' => implode(' & ', $updated)]),
         ]);
     }
 

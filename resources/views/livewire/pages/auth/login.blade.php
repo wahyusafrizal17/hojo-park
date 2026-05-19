@@ -28,8 +28,8 @@ new #[Layout('layouts.guest')] class extends Component
     <div class="overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/25 ring-1 ring-black/5">
         <div class="grid grid-cols-1 lg:grid-cols-2">
             {{-- Kolom ilustrasi (desktop) --}}
-            <div class="relative hidden min-h-[22rem] items-center justify-center overflow-hidden bg-gradient-to-br from-rose-50 via-white to-red-50 p-6 lg:flex">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(225,29,72,0.12),transparent_50%)]"></div>
+            <div class="relative hidden min-h-[22rem] items-center justify-center overflow-hidden bg-gradient-to-br from-brand-orange-pale via-white to-brand-cream p-6 lg:flex">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(232,120,32,0.12),transparent_50%)]"></div>
                 <img
                     src="{{ asset('login.png') }}"
                     alt=""
@@ -52,7 +52,7 @@ new #[Layout('layouts.guest')] class extends Component
                 <form wire:submit="login" class="space-y-5">
 
                     <div x-data="{ showPassword: false }">
-                        <label for="password" class="mb-1.5 block text-sm font-medium text-gray-700">{{ __('Kata Sandi Akses') }}</label>
+                        <label for="password" class="mb-1.5 block text-sm font-medium text-navy">{{ __('Kata Sandi Akses') }}</label>
                         <div class="relative">
                             <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-gray-400">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -68,7 +68,7 @@ new #[Layout('layouts.guest')] class extends Component
                                 autofocus
                                 autocomplete="current-password"
                                 placeholder="{{ __('Masukkan kata sandi Security atau Administrator') }}"
-                                class="block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 pl-11 pr-12 text-sm text-gray-900 placeholder:text-gray-400 transition focus:border-rose-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/20"
+                                class="block w-full rounded-xl border field-input py-3 pl-11 pr-12"
                             />
                             <button
                                 type="button"
@@ -85,13 +85,13 @@ new #[Layout('layouts.guest')] class extends Component
                     </div>
 
                     <label class="inline-flex cursor-pointer items-center gap-2">
-                        <input wire:model="form.remember" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-rose-600 focus:ring-rose-500/30" name="remember" />
+                        <input wire:model="form.remember" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-brand-danger focus:ring-brand-orange/30" name="remember" />
                         <span class="text-sm text-gray-600">{{ __('Ingat sesi ini') }}</span>
                     </label>
 
                     <button
                         type="submit"
-                        class="flex w-full items-center justify-center rounded-xl bg-rose-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-rose-600/30 transition hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 active:scale-[0.99]"
+                        class="btn-primary w-full py-3.5 active:scale-[0.99]"
                     >
                         {{ __('Masuk') }}
                     </button>

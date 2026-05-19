@@ -22,7 +22,6 @@ class CheckInRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vehicle_type_id' => ['required', 'exists:vehicle_types,id'],
             'guest_name' => ['required', 'string', 'max:120'],
             'room_number' => ['required', 'string', 'max:32'],
             'plate_number' => ['required', 'string', 'max:32'],

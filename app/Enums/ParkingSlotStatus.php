@@ -22,10 +22,10 @@ enum ParkingSlotStatus: string
     public function colorClass(): string
     {
         return match ($this) {
-            self::Available => 'bg-emerald-500/90 border-emerald-600 text-white',
-            self::Occupied => 'bg-rose-500/90 border-rose-600 text-white',
-            self::Reserved => 'bg-amber-400/95 border-amber-500 text-slate-900',
-            self::Maintenance => 'bg-slate-400/90 border-slate-500 text-white',
+            self::Available => 'border-brand-orange bg-brand-orange-pale text-navy',
+            self::Occupied => 'border-navy bg-navy text-white',
+            self::Reserved => 'border-brand-orange/60 bg-brand-orange-pale text-navy',
+            self::Maintenance => 'border-brand-muted bg-brand-muted/40 text-navy',
         };
     }
 }

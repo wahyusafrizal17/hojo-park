@@ -8,11 +8,11 @@
 
 @php
     $tones = [
-        'primary' => ['bg' => 'bg-red-500/10', 'icon' => 'text-red-600 dark:text-red-400', 'ring' => 'ring-red-500/20'],
-        'success' => ['bg' => 'bg-emerald-500/10', 'icon' => 'text-emerald-600 dark:text-emerald-400', 'ring' => 'ring-emerald-500/20'],
-        'danger' => ['bg' => 'bg-rose-500/10', 'icon' => 'text-rose-600 dark:text-rose-400', 'ring' => 'ring-rose-500/20'],
-        'warning' => ['bg' => 'bg-amber-500/10', 'icon' => 'text-amber-600 dark:text-amber-400', 'ring' => 'ring-amber-500/20'],
-        'info' => ['bg' => 'bg-red-500/10', 'icon' => 'text-red-600 dark:text-red-400', 'ring' => 'ring-red-500/20'],
+        'primary' => ['bg' => 'bg-brand-orange-pale', 'icon' => 'text-brand-orange', 'ring' => 'ring-brand-orange/20', 'value' => 'text-navy'],
+        'success' => ['bg' => 'bg-brand-orange-pale', 'icon' => 'text-brand-orange', 'ring' => 'ring-brand-orange/20', 'value' => 'text-navy'],
+        'danger' => ['bg' => 'bg-navy/10', 'icon' => 'text-navy', 'ring' => 'ring-navy/20', 'value' => 'text-navy'],
+        'warning' => ['bg' => 'bg-brand-orange-pale', 'icon' => 'text-brand-orange', 'ring' => 'ring-brand-orange/20', 'value' => 'text-navy'],
+        'info' => ['bg' => 'bg-brand-orange-pale', 'icon' => 'text-brand-orange', 'ring' => 'ring-brand-orange/20', 'value' => 'text-navy'],
     ];
     $t = $tones[$tone] ?? $tones['primary'];
 
@@ -30,10 +30,10 @@
     <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-60 blur-2xl {{ $t['bg'] }}" aria-hidden="true"></div>
     <div class="relative flex items-start justify-between gap-4">
         <div class="min-w-0 flex-1">
-            <p class="text-[13px] font-medium text-slate-500 dark:text-slate-400">{{ $label }}</p>
-            <p class="mt-1 text-[1.65rem] font-bold leading-none tracking-tight text-slate-800 dark:text-white">{{ $value }}</p>
+            <p class="text-[13px] font-medium text-brand-muted">{{ $label }}</p>
+            <p class="mt-1 text-[1.65rem] font-bold leading-none tracking-tight {{ $t['value'] }}">{{ $value }}</p>
             @if ($hint)
-                <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">{{ $hint }}</p>
+                <p class="mt-2 text-xs text-brand-muted">{{ $hint }}</p>
             @endif
         </div>
         <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1 {{ $t['bg'] }} {{ $t['ring'] }}">

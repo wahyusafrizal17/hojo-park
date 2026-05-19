@@ -4,7 +4,7 @@
  * Denah Area Parkir Samping — selaras layout fisik hotel.
  *
  * Jalan Umum: 2 label vertikal (blok atas S.8–S.14 & blok bawah S.7–S.1)
- * Jalan Keluar: baris 8 di antara kedua blok (tidak menutupi Jalan Umum)
+ * Pintu Keluar: baris 8 di antara kedua blok (tidak menutupi Jalan Umum)
  */
 return [
     'grid_columns' => 4,
@@ -34,13 +34,6 @@ return [
         'coordinate_x' => 1,
         'coordinate_y' => 16,
         'span_columns' => 2,
-    ],
-
-    'east_area' => [
-        'coordinate_x' => 3,
-        'coordinate_y' => 4,
-        'span_columns' => 2,
-        'span_rows' => 9,
     ],
 
     'slots' => [

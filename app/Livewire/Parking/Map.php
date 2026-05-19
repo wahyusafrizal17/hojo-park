@@ -8,7 +8,6 @@ use App\Http\Requests\Parking\BookingRequest;
 use App\Http\Requests\Parking\CheckInRequest;
 use App\Models\ParkingSlot;
 use App\Models\ParkingTransaction;
-use App\Models\VehicleType;
 use App\Repositories\Contracts\ParkingSlotRepositoryInterface;
 use App\Services\Parking\ParkingFlowService;
 use Illuminate\Contracts\View\View;
@@ -199,7 +198,6 @@ class Map extends Component
     protected function resetForms(): void
     {
         $this->checkIn = [
-            'vehicle_type_id' => VehicleType::query()->value('id'),
             'guest_name' => '',
             'room_number' => '',
             'plate_number' => '',
@@ -208,7 +206,6 @@ class Map extends Component
         ];
 
         $this->booking = [
-            'vehicle_type_id' => VehicleType::query()->value('id'),
             'guest_name' => '',
             'room_number' => '',
             'plate_number' => '',
@@ -230,12 +227,10 @@ class Map extends Component
     public function render(): View
     {
         $slots = $this->slots->allForMap($this->activeArea);
-        $vehicleTypes = VehicleType::query()->orderBy('name')->get();
         $activeAreaEnum = ParkingArea::from($this->activeArea);
 
         return view('livewire.parking.map', [
             'slots' => $slots,
-            'vehicleTypes' => $vehicleTypes,
             'activeAreaEnum' => $activeAreaEnum,
         ]);
     }

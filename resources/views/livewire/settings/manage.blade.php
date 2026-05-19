@@ -10,7 +10,7 @@
             wire:click="$set('tab', 'passwords')"
             @class([
                 'rounded-lg px-4 py-2 text-sm font-medium transition',
-                'bg-red-600 text-white shadow-sm' => $tab === 'passwords',
+                'bg-brand-orange text-white shadow-sm' => $tab === 'passwords',
                 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' => $tab !== 'passwords',
             ])
         >
@@ -21,7 +21,7 @@
             wire:click="$set('tab', 'capacity')"
             @class([
                 'rounded-lg px-4 py-2 text-sm font-medium transition',
-                'bg-red-600 text-white shadow-sm' => $tab === 'capacity',
+                'bg-brand-orange text-white shadow-sm' => $tab === 'capacity',
                 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' => $tab !== 'capacity',
             ])
         >
@@ -33,35 +33,36 @@
         <div class="vuexy-card max-w-2xl p-6">
             <h3 class="text-sm font-semibold text-slate-800 dark:text-white">{{ __('Dual-Level Password') }}</h3>
             <p class="mt-1 text-sm text-slate-500">{{ __('Tanpa username — peran ditentukan otomatis dari kata sandi yang dimasukkan saat login.') }}</p>
+            <p class="mt-1 text-sm text-slate-500">{{ __('Minimal 4 karakter, maksimal 20. Kosongkan bagian yang tidak ingin diubah.') }}</p>
 
             <form wire:submit="savePasswords" class="mt-6 space-y-5">
                 <div class="space-y-4 rounded-xl border border-slate-200/80 p-4 dark:border-slate-700">
                     <p class="text-xs font-semibold uppercase tracking-wider text-emerald-600">{{ __('Security (Operasional)') }}</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium">{{ __('Kata sandi baru') }}</label>
-                        <input type="password" wire:model="security_password" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
+                        <input type="password" wire:model="security_password" maxlength="20" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
                         <x-input-error :messages="$errors->get('security_password')" class="mt-1" />
                     </div>
                     <div>
                         <label class="mb-1 block text-sm font-medium">{{ __('Konfirmasi') }}</label>
-                        <input type="password" wire:model="security_password_confirmation" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
+                        <input type="password" wire:model="security_password_confirmation" maxlength="20" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
                     </div>
                 </div>
 
                 <div class="space-y-4 rounded-xl border border-slate-200/80 p-4 dark:border-slate-700">
-                    <p class="text-xs font-semibold uppercase tracking-wider text-red-600">{{ __('Administrator (Manajerial)') }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-brand-orange">{{ __('Administrator (Manajerial)') }}</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium">{{ __('Kata sandi baru') }}</label>
-                        <input type="password" wire:model="administrator_password" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
+                        <input type="password" wire:model="administrator_password" maxlength="20" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
                         <x-input-error :messages="$errors->get('administrator_password')" class="mt-1" />
                     </div>
                     <div>
                         <label class="mb-1 block text-sm font-medium">{{ __('Konfirmasi') }}</label>
-                        <input type="password" wire:model="administrator_password_confirmation" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
+                        <input type="password" wire:model="administrator_password_confirmation" maxlength="20" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm dark:border-slate-600 dark:bg-slate-900" />
                     </div>
                 </div>
 
-                <button type="submit" class="rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-red-700">
+                <button type="submit" class="btn-primary">
                     {{ __('Simpan Kata Sandi') }}
                 </button>
             </form>
@@ -84,7 +85,7 @@
                             <x-input-error :messages="$errors->get($field['model'])" class="mt-1" />
                         </div>
                     @endforeach
-                    <button type="submit" class="rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-red-700">
+                    <button type="submit" class="btn-primary">
                         {{ __('Simpan Kapasitas') }}
                     </button>
                 </form>

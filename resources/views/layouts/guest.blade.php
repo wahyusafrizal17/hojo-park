@@ -11,7 +11,7 @@
         @livewireStyles
     </head>
     <body class="min-h-full antialiased" style="font-family: Inter, ui-sans-serif, system-ui, sans-serif">
-        <div class="relative min-h-screen overflow-hidden bg-gradient-to-br from-rose-600 via-red-600 to-rose-700">
+        <div class="relative min-h-screen overflow-hidden bg-gradient-to-br from-navy via-[#0f3560] to-navy">
             {{-- Ornamen organik --}}
             <div class="pointer-events-none absolute inset-0" aria-hidden="true">
                 <svg class="absolute -left-24 -top-32 h-[28rem] w-[28rem] text-white/15" viewBox="0 0 400 400" fill="currentColor">
