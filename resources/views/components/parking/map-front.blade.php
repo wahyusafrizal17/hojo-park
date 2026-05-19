@@ -14,7 +14,7 @@
 >
     {{-- Pintu Masuk (barat) --}}
     <div
-        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-brand-orange/50 bg-brand-orange-pale p-1 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-navy dark:border-red-800 dark:bg-red-950/40 dark:text-red-200"
+        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-slate-300/60 bg-slate-100/90 p-1 text-center text-[9px] font-bold uppercase leading-tight text-slate-700 dark:border-slate-600 dark:bg-slate-800/60 dark:text-slate-300"
         style="grid-column:{{ $entrance['coordinate_x'] }}/span {{ $entrance['span_columns'] }};grid-row:{{ $entrance['coordinate_y'] }}/span {{ $entrance['span_rows'] }}"
         aria-hidden="true"
     >
