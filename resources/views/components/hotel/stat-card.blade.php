@@ -30,10 +30,10 @@
     <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-60 blur-2xl {{ $t['bg'] }}" aria-hidden="true"></div>
     <div class="relative flex items-start justify-between gap-4">
         <div class="min-w-0 flex-1">
-            <p class="text-[13px] font-medium text-brand-muted">{{ $label }}</p>
-            <p class="mt-1 text-[1.65rem] font-bold leading-none tracking-tight {{ $t['value'] }}">{{ $value }}</p>
+            <p class="text-[13px] font-medium text-brand-muted dark:text-slate-400">{{ $label }}</p>
+            <p class="mt-1 text-[1.65rem] font-bold leading-none tracking-tight {{ $t['value'] }} dark:text-white">{{ $value }}</p>
             @if ($hint)
-                <p class="mt-2 text-xs text-brand-muted">{{ $hint }}</p>
+                <p class="mt-2 text-xs text-brand-muted dark:text-slate-400">{{ $hint }}</p>
             @endif
         </div>
         <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1 {{ $t['bg'] }} {{ $t['ring'] }}">

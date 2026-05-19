@@ -20,7 +20,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body class="h-full bg-brand-cream font-sans text-navy antialiased" style="font-family:'Public Sans',ui-sans-serif,system-ui,sans-serif">
+    <body class="h-full font-sans antialiased" style="font-family:'Public Sans',ui-sans-serif,system-ui,sans-serif">
         @php
             $user = auth()->user();
             $roleLabel = $user?->roleLabel() ?? '';
@@ -39,8 +39,8 @@
                     @php($t = session('hotel_toast'))
                     <div @class([
                         'rounded-lg border px-4 py-3 text-sm shadow-lg',
-                        'border-brand-border bg-white text-navy' => ($t['type'] ?? 'success') === 'success',
-                        'border-brand-danger/30 bg-white text-brand-danger' => ($t['type'] ?? '') === 'error',
+                        'border-brand-border bg-white text-navy dark:border-slate-700 dark:bg-[#0f2744] dark:text-slate-200' => ($t['type'] ?? 'success') === 'success',
+                        'border-brand-danger/30 bg-white text-brand-danger dark:border-brand-danger/40 dark:bg-[#0f2744]' => ($t['type'] ?? '') === 'error',
                     ])>
                         {{ $t['message'] ?? '' }}
                     </div>
@@ -102,11 +102,11 @@
 
             {{-- Main --}}
             <div class="lg:ps-[260px]">
-                <header class="sticky top-0 z-30 border-b border-brand-border bg-white shadow-sm backdrop-blur-md">
+                <header class="sticky top-0 z-30 border-b border-brand-border bg-white shadow-sm backdrop-blur-md dark:border-slate-700/60 dark:bg-[#0f2744]/95">
                     <div class="flex h-[4.25rem] items-center gap-3 px-4 sm:px-6">
                         <button
                             type="button"
-                            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand-border text-brand-muted hover:bg-brand-cream lg:hidden"
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand-border text-brand-muted hover:bg-brand-cream dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/80 lg:hidden"
                             @click="sidebarOpen = true"
                         >
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -140,12 +140,12 @@
                                 <button
                                     type="button"
                                     @click="userMenu = !userMenu"
-                                    class="flex items-center gap-2 rounded-lg py-1.5 pe-2 ps-1.5 transition hover:bg-brand-cream"
+                                    class="flex items-center gap-2 rounded-lg py-1.5 pe-2 ps-1.5 transition hover:bg-brand-cream dark:hover:bg-slate-800/80"
                                 >
                                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-xs font-bold text-white">{{ $initials }}</span>
                                     <span class="hidden text-start sm:block">
-                                        <span class="block text-sm font-medium text-navy">{{ $user->name }}</span>
-                                        <span class="block text-xs text-brand-muted">{{ $roleLabel }}</span>
+                                        <span class="block text-sm font-medium text-navy dark:text-white">{{ $user->name }}</span>
+                                        <span class="block text-xs text-brand-muted dark:text-slate-400">{{ $roleLabel }}</span>
                                     </span>
                                     <svg class="hidden h-4 w-4 text-brand-muted sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>
                                 </button>
@@ -153,9 +153,9 @@
                                     x-show="userMenu"
                                     x-transition
                                     x-cloak
-                                    class="absolute end-0 mt-2 w-52 overflow-hidden rounded-lg border border-brand-border bg-white py-1 shadow-lg"
+                                    class="absolute end-0 mt-2 w-52 overflow-hidden rounded-lg border border-brand-border bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-[#0f2744]"
                                 >
-                                    <a href="{{ route('profile') }}" wire:navigate class="flex items-center gap-2 px-4 py-2.5 text-sm text-navy hover:bg-brand-cream">
+                                    <a href="{{ route('profile') }}" wire:navigate class="flex items-center gap-2 px-4 py-2.5 text-sm text-navy hover:bg-brand-cream dark:text-slate-200 dark:hover:bg-slate-800/80">
                                         <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
                                         {{ __('Profil') }}
                                     </a>
@@ -170,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-t border-brand-border px-4 py-2.5 md:hidden">
+                    <div class="border-t border-brand-border px-4 py-2.5 dark:border-slate-700/60 md:hidden">
                         <livewire:layout.global-search />
                     </div>
                 </header>

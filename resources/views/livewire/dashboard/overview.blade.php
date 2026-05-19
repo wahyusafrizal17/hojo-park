@@ -13,9 +13,9 @@
 
     <div class="grid gap-4 sm:grid-cols-3">
         @foreach ($zones as $zone)
-            <div class="vuexy-card bg-brand-orange-pale p-4">
+            <div class="vuexy-card bg-brand-orange-pale p-4 dark:bg-brand-orange/10">
                 <p class="text-xs font-semibold uppercase tracking-wider text-brand-muted">{{ $zone['label'] }}</p>
-                <p class="mt-2 text-2xl font-bold text-navy">{{ $zone['available'] }}<span class="text-sm font-normal text-brand-muted"> / {{ $zone['capacity'] }}</span></p>
+                <p class="mt-2 text-2xl font-bold text-navy dark:text-white">{{ $zone['available'] }}<span class="text-sm font-normal text-brand-muted dark:text-slate-400"> / {{ $zone['capacity'] }}</span></p>
                 <p class="mt-1 text-xs text-brand-muted">{{ __('Kosong · Terisi :o · Booking :r', ['o' => $zone['occupied'], 'r' => $zone['reserved']]) }}</p>
                 <a href="{{ route('parking.map', ['area' => $zone['key']]) }}" wire:navigate class="mt-3 inline-block text-xs font-semibold text-brand-orange hover:brightness-110">{{ __('Buka Denah') }} →</a>
             </div>
@@ -54,7 +54,7 @@
         <x-hotel.card :title="__('Kapasitas Parkir')">
             <div class="space-y-5">
                 <div class="flex items-center justify-between text-sm">
-                    <span class="text-slate-500">{{ __('Utilisasi') }}</span>
+                    <span class="hotel-muted">{{ __('Utilisasi') }}</span>
                     <span class="text-lg font-bold {{ $utilization > 80 ? 'text-brand-danger' : 'text-brand-orange' }}">{{ $utilization }}%</span>
                 </div>
                 <div class="h-2.5 overflow-hidden rounded-full bg-brand-border/60">

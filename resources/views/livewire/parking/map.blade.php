@@ -25,11 +25,11 @@
     </div>
 
     <div class="vuexy-card flex flex-wrap gap-2 p-4 text-xs">
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-brand-orange/30 bg-brand-orange-pale px-3 py-1 font-medium text-navy">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-brand-orange/30 bg-brand-orange-pale px-3 py-1 font-medium text-navy dark:border-brand-orange/40 dark:bg-[#152a45] dark:text-white">
                 <span class="h-2 w-2 rounded-full bg-brand-orange"></span>{{ __('Kosong') }}
             </span>
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-navy/20 bg-navy/10 px-3 py-1 font-medium text-navy">
-                <span class="h-2 w-2 rounded-full bg-navy"></span>{{ __('Terisi') }}
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-navy/20 bg-navy/10 px-3 py-1 font-medium text-navy dark:border-slate-500 dark:bg-slate-700/80 dark:text-white">
+                <span class="h-2 w-2 rounded-full bg-navy dark:bg-slate-400"></span>{{ __('Terisi') }}
             </span>
             <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 font-medium text-amber-900 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-100">
                 <span class="h-2 w-2 rounded-full bg-amber-400"></span>{{ __('Booking') }}
@@ -98,11 +98,11 @@
                             @php($t = $slot->activeTransaction)
                             <dl class="grid grid-cols-2 gap-3 rounded-xl border border-slate-200/80 bg-slate-50/80 p-4 dark:border-slate-700 dark:bg-slate-800/50">
                                 <div class="col-span-2">
-                                    <dt class="text-xs text-slate-500 dark:text-slate-400">{{ __('Nama tamu') }}</dt>
+                                    <dt class="text-xs text-slate-500 dark:text-slate-400">{{ __('Nama Tamu') }}</dt>
                                     <dd class="font-semibold text-slate-900 dark:text-white">{{ $t->guest_name }}</dd>
                                 </div>
                                 <div>
-                                    <dt class="text-xs text-slate-500 dark:text-slate-400">{{ __('No. kamar') }}</dt>
+                                    <dt class="text-xs text-slate-500 dark:text-slate-400">{{ __('No. Kamar') }}</dt>
                                     <dd class="font-medium">{{ $t->room_number }}</dd>
                                 </div>
                                 <div>
@@ -137,13 +137,13 @@
                     @can('checkIn', $slot)
                         <form wire:submit.prevent="checkInSubmit" class="mt-5 space-y-3 text-sm">
                             <div>
-                                <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Nama tamu') }}</label>
+                                <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Nama Tamu') }}</label>
                                 <input type="text" wire:model="checkIn.guest_name" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
                                 @error('checkIn.guest_name') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('No. kamar') }}</label>
+                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('No. Kamar') }}</label>
                                     <input type="text" wire:model="checkIn.room_number" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
                                     @error('checkIn.room_number') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
@@ -159,9 +159,9 @@
                             </div>
                             <label class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
                                 <input type="checkbox" wire:model="checkIn.scan_entry" class="rounded border-slate-300 text-brand-orange" />
-                                {{ __('Entri via scan / QR') }}
+                                {{ __('Entri Via Scan / QR') }}
                             </label>
-                            <button type="submit" class="btn-primary w-full">{{ __('Simpan check-in') }}</button>
+                            <button type="submit" class="btn-primary w-full">{{ __('Simpan Check-In') }}</button>
                         </form>
                     @endcan
                 @endif
@@ -169,8 +169,32 @@
                 @if ($modalTab === 'checkout' && $slot)
                     @can('checkOut', $slot)
                         <div class="mt-5 space-y-3 text-sm">
-                            <p class="text-slate-600 dark:text-slate-300">{{ __('Check-out akan mengosongkan slot dan menyimpan riwayat.') }}</p>
-                            <button type="button" wire:click="checkOutSubmit" class="btn-danger">{{ __('Konfirmasi check-out') }}</button>
+                            @if ($slot->activeTransaction)
+                                @php($t = $slot->activeTransaction)
+                                <div>
+                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Nama Tamu') }}</label>
+                                    <p class="mt-1 rounded-xl border border-slate-200/80 bg-slate-50/80 px-3 py-2.5 text-slate-900 dark:border-slate-700 dark:bg-slate-800/50 dark:text-white">{{ $t->guest_name }}</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('No. Kamar') }}</label>
+                                        <p class="mt-1 rounded-xl border border-slate-200/80 bg-slate-50/80 px-3 py-2.5 dark:border-slate-700 dark:bg-slate-800/50 dark:text-white">{{ $t->room_number }}</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Plat') }}</label>
+                                        <p class="mt-1 rounded-xl border border-slate-200/80 bg-slate-50/80 px-3 py-2.5 font-mono uppercase dark:border-slate-700 dark:bg-slate-800/50 dark:text-white">{{ $t->plate_number }}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Catatan') }}</label>
+                                    <p class="mt-1 rounded-xl border border-slate-200/80 bg-slate-50/80 px-3 py-2.5 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">{{ $t->notes ?: '—' }}</p>
+                                </div>
+                            @else
+                                <p class="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4 text-slate-600 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300">
+                                    {{ __('Tidak ada kendaraan aktif di slot ini.') }}
+                                </p>
+                            @endif
+                            <button type="button" wire:click="checkOutSubmit" @disabled(! $slot->activeTransaction) class="btn-danger disabled:cursor-not-allowed disabled:opacity-50">{{ __('Konfirmasi Check-Out') }}</button>
                         </div>
                     @endcan
                 @endif
@@ -179,18 +203,18 @@
                     @can('book', $slot)
                         <form wire:submit.prevent="bookingSubmit" class="mt-5 space-y-3 text-sm">
                             <div>
-                                <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Nama tamu') }}</label>
+                                <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Nama Tamu') }}</label>
                                 <input type="text" wire:model="booking.guest_name" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
                                 @error('booking.guest_name') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('No. kamar') }}</label>
+                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('No. Kamar') }}</label>
                                     <input type="text" wire:model="booking.room_number" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
                                     @error('booking.room_number') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
                                 <div>
-                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Plat (opsional)') }}</label>
+                                    <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Plat') }}</label>
                                     <input type="text" wire:model="booking.plate_number" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900" />
                                     @error('booking.plate_number') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
                                 </div>
@@ -211,7 +235,7 @@
                                 <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Catatan') }}</label>
                                 <textarea wire:model="booking.notes" rows="2" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900"></textarea>
                             </div>
-                            <button type="submit" class="btn-primary w-full">{{ __('Simpan booking') }}</button>
+                            <button type="submit" class="btn-primary w-full">{{ __('Simpan Booking') }}</button>
                         </form>
                     @endcan
                 @endif
@@ -219,14 +243,14 @@
                 @if ($modalTab === 'admin' && $slot)
                     @can('update', $slot)
                         <form wire:submit.prevent="updateSlotStatus" class="mt-5 space-y-3 text-sm">
-                            <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Status slot') }}</label>
+                            <label class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ __('Status Slot') }}</label>
                             <select wire:model="statusChoice" class="mt-1 w-full rounded-xl border-slate-200 bg-white text-sm dark:border-slate-700 dark:bg-slate-900">
                                 @foreach (\App\Enums\ParkingSlotStatus::cases() as $st)
                                     <option value="{{ $st->value }}">{{ $st->label() }}</option>
                                 @endforeach
                             </select>
                             @error('statusChoice') <p class="mt-1 text-xs text-brand-danger">{{ $message }}</p> @enderror
-                            <button type="submit" class="w-full rounded-xl border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800">{{ __('Perbarui status') }}</button>
+                            <button type="submit" class="btn-primary w-full">{{ __('Perbarui Status') }}</button>
                         </form>
                     @endcan
                 @endif

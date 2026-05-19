@@ -8,13 +8,13 @@
         && (int) $parkingSlot->span_columns > 1;
 
     $statusClasses = match ($parkingSlot->status) {
-        ParkingSlotStatus::Available => 'border-brand-orange bg-brand-orange-pale text-navy shadow-brand-orange/15',
+        ParkingSlotStatus::Available => 'border-brand-orange bg-brand-orange-pale text-navy shadow-brand-orange/15 dark:bg-[#152a45] dark:text-white dark:shadow-none',
         ParkingSlotStatus::Occupied => $parkingSlot->isVip()
-            ? 'border-brand-orange bg-brand-orange text-white shadow-brand-orange/25'
-            : 'border-navy bg-navy text-white shadow-navy/25',
-        ParkingSlotStatus::Reserved => 'border-brand-orange/60 bg-brand-orange-pale text-navy shadow-brand-orange/10',
-        ParkingSlotStatus::Maintenance => 'border-brand-muted bg-brand-muted/40 text-navy shadow-brand-border/50',
-        default => 'border-brand-border bg-white text-navy shadow-brand-border/50',
+            ? 'border-brand-orange bg-brand-orange text-white shadow-brand-orange/25 dark:shadow-brand-orange/20'
+            : 'border-navy bg-navy text-white shadow-navy/25 dark:border-slate-500 dark:bg-slate-700 dark:shadow-none',
+        ParkingSlotStatus::Reserved => 'border-brand-orange/60 bg-brand-orange-pale text-navy shadow-brand-orange/10 dark:border-brand-orange/50 dark:bg-[#152a45] dark:text-white dark:shadow-none',
+        ParkingSlotStatus::Maintenance => 'border-brand-muted bg-brand-muted/40 text-navy shadow-brand-border/50 dark:border-slate-600 dark:bg-slate-700/90 dark:text-slate-100 dark:shadow-none',
+        default => 'border-brand-border bg-white text-navy shadow-brand-border/50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:shadow-none',
     };
 @endphp
 

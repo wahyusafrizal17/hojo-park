@@ -8,17 +8,20 @@
 
 @layer base {
     body {
-        @apply text-[15px] text-navy;
+        @apply bg-brand-cream text-[15px] text-navy antialiased;
+        @apply dark:bg-[#0a1a2e] dark:text-slate-200;
     }
 }
 
 @layer components {
     .vuexy-card {
         @apply rounded-xl border border-brand-border bg-white shadow-vuexy;
+        @apply dark:border-slate-700/60 dark:bg-[#0f2744] dark:shadow-none;
     }
 
     .vuexy-badge {
         @apply inline-flex items-center rounded-md bg-brand-orange-pale px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-orange;
+        @apply dark:bg-brand-orange/15 dark:text-brand-orange;
     }
 
     .vuexy-nav-link {
@@ -56,25 +59,46 @@
 
     .btn-primary {
         @apply inline-flex items-center justify-center rounded-xl bg-navy px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-dark focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:ring-offset-2;
+        @apply dark:focus:ring-offset-[#0a1a2e];
     }
 
     .btn-accent {
         @apply inline-flex items-center justify-center rounded-xl bg-brand-orange px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-brand-orange/25 transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:ring-offset-2;
+        @apply dark:focus:ring-offset-[#0a1a2e];
     }
 
     .btn-danger {
         @apply inline-flex w-full items-center justify-center rounded-xl bg-brand-danger py-2.5 text-sm font-semibold text-white shadow-md transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-brand-danger/40 focus:ring-offset-2;
+        @apply dark:focus:ring-offset-[#0a1a2e];
     }
 
     .btn-secondary {
         @apply inline-flex items-center justify-center rounded-xl border border-brand-border bg-brand-cream px-4 py-2 text-sm font-medium text-navy transition hover:bg-white;
+        @apply dark:border-slate-700 dark:bg-[#0f2744] dark:text-slate-200 dark:hover:bg-slate-800/80;
     }
 
     .field-input {
         @apply w-full rounded-xl border border-brand-border bg-brand-cream text-sm text-navy placeholder:text-brand-muted focus:border-brand-orange focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/20;
+        @apply dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-200 dark:placeholder:text-slate-500 dark:focus:border-brand-orange dark:focus:bg-slate-800;
     }
 
     .table-head {
         @apply border-b border-brand-border bg-brand-cream text-left text-xs font-semibold uppercase tracking-wide text-navy;
+        @apply dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300;
+    }
+
+    .hotel-page-title {
+        @apply text-[1.35rem] font-semibold tracking-tight text-navy;
+        @apply dark:text-white;
+    }
+
+    .hotel-page-subtitle {
+        @apply text-sm text-brand-muted;
+        @apply dark:text-slate-400;
+    }
+
+    .hotel-muted {
+        @apply text-brand-muted;
+        @apply dark:text-slate-400;
     }
 }
