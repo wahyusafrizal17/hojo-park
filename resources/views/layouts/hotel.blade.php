@@ -127,15 +127,6 @@
                                 <svg x-show="dark" x-cloak class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
                             </button>
 
-                            <a
-                                href="{{ route('parking.map') }}"
-                                wire:navigate
-                                class="btn-accent hidden h-10 gap-1.5 px-3.5 sm:inline-flex"
-                            >
-                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-                                {{ __('Check-in') }}
-                            </a>
-
                             <div class="relative" @click.outside="userMenu = false">
                                 <button
                                     type="button"

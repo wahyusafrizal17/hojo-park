@@ -118,13 +118,6 @@
                                     <dd>{{ $t->notes ?: '—' }}</dd>
                                 </div>
                             </dl>
-                            <div class="rounded-xl border border-dashed border-slate-200 p-3 text-center dark:border-slate-700">
-                                <p class="text-xs text-slate-500 dark:text-slate-400">{{ __('QR tiket parkir') }}</p>
-                                <div class="mt-2 flex justify-center">
-                                    {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(140)->margin(1)->generate(route('parking.ticket', $t->qr_token)) !!}
-                                </div>
-                                <p class="mt-2 break-all text-[10px] text-slate-400">{{ route('parking.ticket', $t->qr_token) }}</p>
-                            </div>
                         @else
                             <p class="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4 text-slate-600 dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-300">
                                 {{ __('Tidak ada kendaraan aktif di slot ini.') }}

@@ -5,7 +5,7 @@
  *
  * Baris 1: B.11 → B.1 + Area Motor (sejajar kolom B.27–B.30)
  * Baris 3: B.12 → B.20
- * Baris 4: Pintu Masuk (di atas B.26–B.30)
+ * Baris 4: Pintu Masuk (di atas B.27–B.30, sejajar Area Motor)
  * Baris 5: B.21, B.22 | celah | B.23 → B.30
  * Kolom 16: Jalan Umum
  */
@@ -28,11 +28,11 @@ return [
         'span_rows' => 5,
     ],
 
-    /** Pintu masuk — lorong di atas slot B.26–B.30 */
+    /** Pintu masuk — lorong di atas B.27–B.30 (lebar = Area Motor) */
     'entrance' => [
-        'coordinate_x' => 11,
+        'coordinate_x' => 12,
         'coordinate_y' => 4,
-        'span_columns' => 5,
+        'span_columns' => 4,
         'span_rows' => 1,
     ],
 

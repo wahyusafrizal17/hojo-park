@@ -38,9 +38,9 @@
         <span style="writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)">{{ __('Jalan Umum') }}</span>
     </div>
 
-    {{-- Pintu Masuk (lorong di atas B.26–B.30) --}}
+    {{-- Pintu Masuk (lorong di atas B.27–B.30) --}}
     <div
-        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-red-400/70 bg-navy/90 px-2 py-1.5 text-center text-[9px] font-bold uppercase tracking-wide text-white shadow-sm"
+        class="pointer-events-none z-[1] flex items-center justify-center rounded-lg border border-slate-300/60 bg-slate-200/50 px-2 py-1.5 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-slate-600 dark:border-slate-600 dark:bg-slate-800/60 dark:text-slate-300"
         style="grid-column:{{ $entrance['coordinate_x'] }}/span {{ $entrance['span_columns'] }};grid-row:{{ $entrance['coordinate_y'] }}/span {{ $entrance['span_rows'] }}"
         aria-hidden="true"
     >
