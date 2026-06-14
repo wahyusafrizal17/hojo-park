@@ -8,7 +8,7 @@
 @endphp
 
 <div
-    class="relative isolate min-h-[22rem] w-full flex-1 rounded-2xl border border-slate-200/60 bg-slate-50/80 p-3 shadow-inner dark:border-slate-700/80 dark:bg-slate-900/40"
+    class="relative isolate min-h-[22rem] w-full min-w-[53rem] flex-1 rounded-2xl border border-slate-200/60 bg-slate-50/80 p-3 shadow-inner md:min-w-0 dark:border-slate-700/80 dark:bg-slate-900/40"
     style="display:grid;grid-template-columns:repeat({{ $map['grid_columns'] }},minmax(2.75rem,1fr));grid-template-rows:repeat({{ $map['grid_rows'] }},minmax(3.5rem,auto));gap:0.5rem;"
 >
     {{-- Lorong horizontal antara baris slot --}}

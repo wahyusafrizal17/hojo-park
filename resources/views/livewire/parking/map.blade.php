@@ -40,20 +40,22 @@
     </div>
 
     <div class="flex flex-col gap-4 xl:flex-row">
-        <div class="vuexy-card relative min-w-0 flex-1 overflow-hidden p-4">
+        <div class="vuexy-card relative min-w-0 flex-1 p-4">
             <div class="mb-3 flex items-center justify-between gap-2">
                 <p class="text-xs font-semibold uppercase tracking-wider text-brand-orange dark:text-red-300">{{ __('Area Parkir :zone', ['zone' => $activeAreaEnum->label()]) }}</p>
                 <p class="text-[10px] text-slate-400 dark:text-slate-500">{{ __('Auto-refresh 5 detik') }}</p>
             </div>
 
-            <div class="relative flex gap-3">
-                @if ($activeArea === 'rear')
-                    <x-parking.map-rear :slots="$slots" />
-                @elseif ($activeArea === 'front')
-                    <x-parking.map-front :slots="$slots" />
-                @elseif ($activeArea === 'side')
-                    <x-parking.map-side :slots="$slots" />
-                @endif
+            <div class="-mx-1 overflow-x-auto overscroll-x-contain px-1 pb-1 [-webkit-overflow-scrolling:touch]">
+                <div class="relative min-w-max w-full">
+                    @if ($activeArea === 'rear')
+                        <x-parking.map-rear :slots="$slots" />
+                    @elseif ($activeArea === 'front')
+                        <x-parking.map-front :slots="$slots" />
+                    @elseif ($activeArea === 'side')
+                        <x-parking.map-side :slots="$slots" />
+                    @endif
+                </div>
             </div>
         </div>
     </div>

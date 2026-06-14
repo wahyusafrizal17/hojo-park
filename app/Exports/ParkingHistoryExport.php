@@ -60,8 +60,8 @@ class ParkingHistoryExport implements FromCollection, WithHeadings, WithMapping
             $row->plate_number,
             $row->slot?->slot_code,
             $row->vehicleType?->name,
-            optional($row->checked_in_at)->timezone(config('app.timezone'))->format('Y-m-d H:i'),
-            optional($row->checked_out_at)->timezone(config('app.timezone'))->format('Y-m-d H:i'),
+            $row->checked_in_at?->timezone(config('app.timezone'))->format('Y-m-d H:i') ?? '-',
+            $row->checked_out_at?->timezone(config('app.timezone'))->format('Y-m-d H:i') ?? '-',
             $row->durationHuman() ?? '-',
             $row->status instanceof ParkingTransactionStatus ? $row->status->value : (string) $row->status,
         ];
